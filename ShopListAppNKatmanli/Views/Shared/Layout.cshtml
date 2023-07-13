@@ -9,10 +9,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    
     <link rel="stylesheet" href="/css/style.css" />
 
-    <script type="text/javascript" src="/css/js/card.js"></script>
+    @if (@ViewBag.CartCss == "Cart")
+    {
+        <link rel="stylesheet" href="~/css/cart.css" />
+        <script type="text/javascript" src="/css/js/"></script>
+    }
 
     @if (@ViewBag.register == "register")
     {
@@ -26,6 +31,7 @@
     {
         <link rel="stylesheet" href="~/css/login.css" />
     }
+    
 </head>
 <body style="height:1100px">
     <nav>
@@ -38,9 +44,7 @@
             <li><a href="/Home/Index/" class="@ViewBag.Index">Home page</a></li>
             <li><a href="#">Products</a></li>
             <li>
-                <a href="#">
-                   
-                </a>
+                <a href="/Cart/Index/" class="@ViewBag.Cart"> Cart</a>
             </li>
             <li><a href="/Session/Login/">Login</a></li>
             <li><a href="/Session/Register/" class="@ViewBag.registerActive">Register</a></li>
@@ -116,6 +120,8 @@
        
     </footer>
 
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="/css/js/card.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
-﻿const form = document.querySelector("form");
-eField = form.querySelector(".email"),
+﻿    const form = document.querySelector("form");
+    eField = form.querySelector(".email"),
     eInput = eField.querySelector("input"),
     pField = form.querySelector(".password"),
     pInput = pField.querySelector("input");
@@ -47,3 +47,4 @@ form.onsubmit = (e) => {
         window.location.href = form.getAttribute("action"); //redirecting user to the specified url which is inside action attribute of form tag
     }
 }
+

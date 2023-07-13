@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Product List -->
+<section class="container">
+    <div v-if="products.length > 0">
+        <ul class="products">
+            <li class="row" v-for="(product, index) in products">
+                <div class="col left">
+                    <div class="thumbnail">
+                        <a href="#">
+                            <img :src="product.image" :alt="product.name" />
+                        </a>
+                    </div>
+                    <div class="detail">
+                        <div class="name"><a href="#">{{ product.name }}</a></div>
+                        <div class="description">{{ product.description }}</div>
+                        <div class="price">{{ product.price | currencyFormatted }}</div>
+                    </div>
+                </div>
+
+                
+            </li>
+        </ul>
+    </div>
+    <div v-else class="empty-product">
+        <h3>There are no products in your cart.</h3>
+        <button>Shopping now</button>
+    </div>
+</section>
+<!-- End Product List -->
+<!-- Summary -->
+<section class="container" v-if="products.length > 0">
+    
+
+    <div class="summary">
+        <ul>
+            <li>Subtotal <span>{{ subTotal | currencyFormatted }}</span></li>
+            <li v-if="discount > 0">Discount <span>{{ discountPrice | currencyFormatted }}</span></li>
+            <li>Tax <span>{{ tax | currencyFormatted }}</span></li>
+            <li class="total">Total <span>{{ totalPrice | currencyFormatted }}</span></li>
+        </ul>
+    </div>
+
+    <div class="checkout">
+        <button type="button">Check Out</button>
+    </div>
+</section>
+<!-- End Summary -->
