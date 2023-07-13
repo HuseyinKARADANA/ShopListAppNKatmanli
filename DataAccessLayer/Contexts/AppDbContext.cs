@@ -1,16 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ShoppingListApp.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection.Metadata;
+using EntityLayer.Concrete;
 
 namespace DataAccessLayer.Contexts
 {
     public class AppDbContext:DbContext
     {
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 

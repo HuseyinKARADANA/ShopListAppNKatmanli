@@ -1,4 +1,4 @@
-﻿namespace ShoppingListApp.Models
+﻿namespace EntityLayer.Concrete
 {
     public class Category
     {

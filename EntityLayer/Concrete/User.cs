@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ShoppingListApp.Models
+namespace EntityLayer.Concrete
 {
     public class User
     {

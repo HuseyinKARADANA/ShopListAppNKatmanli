@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.Metrics;
 
-namespace ShoppingListApp.Models
+namespace EntityLayer.Concrete
 {
     public class Address
     {
