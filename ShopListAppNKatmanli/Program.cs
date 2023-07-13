@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Http;
 using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
-using DataAccessLayer.Concrete.Repository.EntityFramework;
+using DataAccessLayer.Concrete.EntityFramework;
 
-namespace ShoppingListApp
+namespace ShopListAppNKatmanli
 {
     public class Program
     {

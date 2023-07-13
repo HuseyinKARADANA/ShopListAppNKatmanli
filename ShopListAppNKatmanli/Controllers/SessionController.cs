@@ -9,7 +9,7 @@ using BusinessLayer.Concrete;
 using EntityLayer.Concrete;
 using BusinessLayer.Abstract;
 
-namespace ShoppingListApp.Mapping
+namespace ShopListAppNKatmanli.Controllers
 {
     public class SessionController : Controller
     {
@@ -25,16 +25,15 @@ namespace ShoppingListApp.Mapping
         {
             ViewBag.register = "register";
             ViewBag.registerActive = "active";
-            return View(new UserViewModel());
+            return View(new UserAddViewModel());
         }
 
         [HttpPost]
-        public ActionResult Register(UserViewModel model)
+        public ActionResult Register(UserAddViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+            
                 Console.WriteLine("buraya geldi");
-                var user=new User()
+                _userService.Insert(new User()
                 {
                     Name = model.Name,
                     Surname = model.Surname,
@@ -44,14 +43,14 @@ namespace ShoppingListApp.Mapping
                     PhoneNumber = model.PhoneNumber,
                     RegisterDate = System.DateTime.Now,
                     UserName = model.UserName,
-                    Password = model.Password,
-                };
-                _userService.Insert(user);
+                    Password = model.Password
+                });
+               
 
                 return RedirectToAction("Index", "Home");
 
                 
-            }
+            
             ViewBag.register = "register";
             ViewBag.registerActive = "active";
             return View(model);

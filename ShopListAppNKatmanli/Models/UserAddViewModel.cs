@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShopListAppNKatmanli.Models
 {
-    public class UserViewModel
+    public class UserAddViewModel
     {
         public int Id { get; set; }
 
