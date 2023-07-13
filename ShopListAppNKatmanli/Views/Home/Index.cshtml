@@ -1,8 +1,74 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="offer">
+    <div class="slider">
+        <div class="slides">
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <input type="radio" name="radio-btn" id="radio4">
+
+            <div class="slide first">
+                <a href="https://www.udemy.com/" target="_blank"><img src="/img/1.png" alt=""></a><!-- resime tıklanınca verilen sayfaya gider-->
+
+            </div>
+            <div class="slide">
+                <a href="https://makuse.mehmetakif.edu.tr/staj/login.php" target="_blank"><img src="/img/2.png" alt=""></a>
+
+            </div>
+            <div class="slide">
+                <a href="https://incudemy.monovi.com.tr/" target="_blank"><img src="/img/3.png" alt=""></a>
+
+            </div>
+            <div class="slide">
+                <a href="https://bgmegitim.mehmetakif.edu.tr/login/auth.php" target="_blank"><img src="/img/4.png" alt=""></a>
+
+            </div>
+            <!-- slide  img end-->
+            <!--automaic navigation start-->
+            <div class="navigation-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+                <div class="auto-btn4"></div>
+            </div>
+            <!-- automatic navigation end-->
+        </div>
+        <!--manual navigation start-->
+        <div class="navigation-manual">
+            <label for="radio1" class="manual-btn" onclick="setCounter1()"></label>
+            <label for="radio2" class="manual-btn" onclick="setCounter2()"></label>
+            <label for="radio3" class="manual-btn" onclick="setCounter3()"></label>
+            <label for="radio4" class="manual-btn" onclick="setCounter4()"></label>
+        </div>
+        <!--manual navigation end-->
+    </div>
 </div>
+
+
+
+<script type="text/javascript">
+    var counter=1;
+
+    function setCounter1() {
+        counter = 1;
+    }
+    function setCounter2() {
+        counter = 2;
+    } function setCounter3() {
+        counter = 3;
+    } function setCounter4() {
+        counter = 4;
+    }
+
+    setInterval(function() {
+        document.getElementById('radio'+counter).checked =true;
+        counter++;
+        if(counter>4){
+            counter=1;
+        }
+    },5000);
+
+</script>

@@ -1,12 +1,15 @@
-﻿using System;
+﻿using DataAccessLayer.Abstract;
+using EntityLayer.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete.Repository.EntityFramework
-{
-    internal class EfUserDal
+{       
+    public class EfUserDal :GenericRepository<User>,IUserDal //User işlemlerine erişebilmek için yaptık
     {
+
     }
 }

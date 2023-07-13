@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Sepet</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    @if (@ViewBag.register == "register")
+    {
+        <link rel="stylesheet" href="/css/register.css" />
+    }
+    @if (@ViewBag.IndexCss == "Index")
+    {
+        <link rel="stylesheet" href="/css/IndexSliderImg.css" />
+    }
+</head>
+<body style="height:1100px">
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </label>
+        <label class="logo" for="">Shopping List</label>
+        <ul> 
+            <li><a href="/Home/Index/" class="@ViewBag.Index">Home page</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Basket</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="/Session/Register/" class="@ViewBag.registerActive">Register</a></li>
+               
+
+
+
+        </ul>
+    </nav>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div style="height:1000px">
+
+        @RenderBody()
+    </div>
+    
+
+
+    
+    <footer>
+        
+        <div class="">
+            <div class="row">
+                <div class="col">
+                    <h4>Kurumsal</h4>
+                    <ul>
+                        <li><a href="">Hakkımızda</a></li>
+                        <li><a href="">Hizmetlerimiz</a></li>
+                        <li><a href="">Gizlilik Politikası</a></li>
+                        <li><a href="">Ödül Programı</a></li>
+
+                    </ul>
+                </div>
+                <div class="col">
+                    <h4>Yardım Al</h4>
+                    <ul>
+                        <li><a href="">SSS</a></li>
+                        <li><a href="">Teslimat</a></li>
+                        <li><a href="">İade</a></li>
+                        <li><a href="">Sipariş Durumu</a></li>
+
+                    </ul>
+                </div>
+                <div class="col">
+                    <h4>E-Ticaret</h4>
+                    <ul>
+                        <li><a href="">Saat</a></li>
+                        <li><a href="">Çanta</a></li>
+                        <li><a href="">Ayakkabı</a></li>
+                        <li><a href="">Bilgisayar</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h4>Bizi Takip Edin</h4>
+                    <div class="social-links">
+                        <ul>
+
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+       
+    </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap');
+
+* {
+    font-family: 'Prompt', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+
+/* nav bar css kodları*/
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: rgb(6, 52, 121);
+    height: 80px;
+    width: 100%;
+}
+
+label.logo {
+    color: #fff;
+    font-size: 2.2em;
+    line-height: 80px;
+    padding: 0 100px;
+    font-weight: 800;
+}
+
+nav ul {
+    float: right;
+    margin-right: 20px;
+}
+
+    nav ul li {
+        display: inline-block;
+        line-height: 80px;
+        margin: 0 5px;
+    }
+
+        nav ul li a {
+            color: #fff;
+            font-size: 1.1em;
+            padding: 7px 12px;
+            text-transform: uppercase;
+        }
+
+            nav ul li a.active, nav ul li a:hover {
+                background-color: #0bccd3;
+                transition: .5s;
+            }
+
+.checkbtn {
+    font-size: 2em;
+    color: #fff;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+@media(max-width:911px) {
+    label.logo {
+        font-size: 2em;
+        padding-left: 50px;
+    }
+
+    nav ul li a {
+        font-size: 1em;
+    }
+}
+
+@media(max-width:861px) {
+    .checkbtn {
+        display: block;
+    }
+
+    ul {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #2b2e20;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 50px 0;
+        line-height: 0px;
+    }
+
+        nav ul li a {
+            font-size: 1.2em;
+        }
+
+    a:hover, a.active {
+        background: none;
+        color: #0bccd3;
+    }
+
+    #check:checked ~ ul {
+        left: 0;
+    }
+}
+
+.footer {
+    background-color: rgba(0, 0, 0, 0.808);
+    color: #fff;
+    height: 80px;
+    text-align: center;
+}
+
+    .footer h4 {
+        padding-top: 1.5em;
+        display: fixed;
+    }
+
+
+
+/*footer*/
+
+.footercontainer {
+    max-width: 1170px;
+    margin: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col .ul {
+    list-style: none;
+}
+
+
+footer {
+
+    width: 100%;
+    background-color: black;
+    padding:70px 0;
+}
+.col {
+    width: 25%;
+    padding: 0 15px;
+}
+
+    .col h4 {
+        font-size: 18px;
+        color: white;
+        text-transform: capitalize;
+        margin-bottom: 35px;
+        font-weight: 500;
+        position: relative;
+    }
+
+        .col h4::before {
+            content: "";
+            position: absolute;
+            left: o;
+            bottom: -10px;
+            background-color: #1e82e9;
+            height: 2px;
+            box-sizing: border-box;
+            width: 50px;
+        }
+
+
+    .col ul li:not(:last-child) {
+        margin-bottom: 10px;
+    }
+
+    .col ul li a {
+        font-size: 16px;
+        text-transform: capitalize;
+        color: white;
+        text-decoration: none;
+        font-weight: 300;
+        color: #bbbbbb;
+        display: block;
+        transition: all 0.3s ease;
+    }
+
+        .col ul li a:hover {
+            color: white;
+            padding-left: 8px;
+        }
+
+    .col .social-links a {
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+        background-color: rgba(255,255,255,0.2);
+        margin: 0 10px 10px 0;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 50%;
+        color: white;
+        transition: all 0.5s ease;
+    }
+
+        .col .social-links a:hover {
+            color: #24262b;
+            background-color: white;
+        }
+/* responsive*/
+@media(max-width:767px) {
+    .col {
+        width: 50%;
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width:574px) {
+    .col {
+        width: 100%;
+    }
+}
