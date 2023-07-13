@@ -11,6 +11,7 @@ namespace ShopListAppNKatmanli.Controllers
         public IActionResult Index()
         {
             @ViewBag.IndexCss = "Index";
+            @ViewBag.Index = "active";
             return View();
         }
 

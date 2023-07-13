@@ -12,11 +12,15 @@
     <link rel="stylesheet" href="/css/style.css" />
     @if (@ViewBag.register == "register")
     {
-        <link rel="stylesheet" href="/css/register.css" />
+        <link rel="stylesheet" href="~/css/register.css" />
     }
     @if (@ViewBag.IndexCss == "Index")
     {
-        <link rel="stylesheet" href="/css/IndexSliderImg.css" />
+        <link rel="stylesheet" href="~/css/IndexSliderImg.css" />
+    }
+    @if (@ViewBag.login == "register")
+    {
+        <link rel="stylesheet" href="~/css/login.css" />
     }
 </head>
 <body style="height:1100px">
@@ -29,8 +33,8 @@
         <ul> 
             <li><a href="/Home/Index/" class="@ViewBag.Index">Home page</a></li>
             <li><a href="#">Products</a></li>
-            <li><a href="#">Basket</a></li>
-            <li><a href="#">Login</a></li>
+            <li><a href="#">Cart</a></li>
+            <li><a href="/Session/Login/">Login</a></li>
             <li><a href="/Session/Register/" class="@ViewBag.registerActive">Register</a></li>
                
 
