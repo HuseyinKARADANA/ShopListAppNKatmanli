@@ -13,7 +13,12 @@ namespace ShoppingListApp.Mapping
 {
     public class SessionController : Controller
     {
-        private readonly UserManager _userService;
+        private readonly IUserService _userService;
+
+        public SessionController(IUserService userService)
+        {
+            _userService = userService;
+        }
 
         [HttpGet]
         public ActionResult Register()
@@ -29,7 +34,7 @@ namespace ShoppingListApp.Mapping
             if (ModelState.IsValid)
             {
                 Console.WriteLine("buraya geldi");
-                _userService.Insert(new User()
+                var user=new User()
                 {
                     Name = model.Name,
                     Surname = model.Surname,
@@ -40,8 +45,9 @@ namespace ShoppingListApp.Mapping
                     RegisterDate = System.DateTime.Now,
                     UserName = model.UserName,
                     Password = model.Password,
-                });
-                
+                };
+                _userService.Insert(user);
+
                 return RedirectToAction("Index", "Home");
 
                 
@@ -64,17 +70,12 @@ namespace ShoppingListApp.Mapping
         [HttpPost]
         public IActionResult Login(User newUser)
         {
-            
-            if (_userService.Login(newUser))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                ViewBag.login = "register";
-                ViewBag.loginActive = "active";
-                return RedirectToAction("Login", "Session");
-            }
+
+           
+
+            ViewBag.login = "register";
+            ViewBag.loginActive = "active";
+            return RedirectToAction("Login", "Session");
         }
     }
 }

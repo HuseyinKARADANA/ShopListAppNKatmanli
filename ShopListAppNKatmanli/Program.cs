@@ -6,6 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using DataAccessLayer.Contexts;
 using Microsoft.AspNetCore.Http;
+using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
+using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete.Repository.EntityFramework;
 
 namespace ShoppingListApp
 {
@@ -19,6 +23,10 @@ namespace ShoppingListApp
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            builder.Services.AddScoped<IUserDal, EfUserDal>(); // Eðer IUserDal'ýn somut bir implementasyonu yoksa, bu kýsmý ekleyin.
+
+            builder.Services.AddScoped<IUserService, UserManager>();
 
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
