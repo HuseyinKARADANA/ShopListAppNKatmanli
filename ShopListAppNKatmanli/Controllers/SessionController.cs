@@ -14,10 +14,11 @@ namespace ShopListAppNKatmanli.Controllers
     public class SessionController : Controller
     {
         private readonly IUserService _userService;
-
+        
         public SessionController(IUserService userService)
         {
             _userService = userService;
+            
         }
 
         [HttpGet]
@@ -52,7 +53,7 @@ namespace ShopListAppNKatmanli.Controllers
 
         }
 
-        [HttpGet]//Default
+        [HttpGet]
         public IActionResult Login()
         {
             ViewBag.login = "login";
@@ -62,12 +63,24 @@ namespace ShopListAppNKatmanli.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Login(UserViewModel p)
+        public IActionResult Login(User p)
         {
-           
-            ViewBag.login = "login";
-            ViewBag.loginActive = "active";
-            return View();
+
+            var isLoggedIn = _userService.Login(p.Email, p.Password);
+            if (isLoggedIn)
+            {
+                @ViewBag.IndexCss = "Index";
+                @ViewBag.Index = "active";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.login = "login";
+                ViewBag.loginActive = "active";
+                return View();
+            }
+
+
 
         }
     }

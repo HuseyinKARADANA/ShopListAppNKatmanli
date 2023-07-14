@@ -27,7 +27,7 @@ namespace ShopListAppNKatmanli
             builder.Services.AddScoped<IUserDal, EfUserDal>(); // Eðer IUserDal'ýn somut bir implementasyonu yoksa, bu kýsmý ekleyin.
 
             builder.Services.AddScoped<IUserService, UserManager>();
-
+           
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));

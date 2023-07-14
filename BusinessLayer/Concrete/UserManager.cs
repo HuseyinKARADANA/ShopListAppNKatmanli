@@ -45,7 +45,19 @@ namespace BusinessLayer.Concrete
             _userDal.Update(t);
         }
 
-       
+        public bool Login(string email, string password)
+        {
+            var user = _userDal.GetUserByEmailAndPassword(email, password);
+            if (user != null)
+            {
+                // Giriş başarılı
+                return true;
+            }
 
+            // Giriş başarısız
+            return false;
+        }
+
+       
     }
 }

@@ -9,7 +9,8 @@ namespace BusinessLayer.Abstract
 {
     public interface IUserService : IGenericService<User>
     {
-    
+
+        bool Login(string email, string password);
 
     }
 }

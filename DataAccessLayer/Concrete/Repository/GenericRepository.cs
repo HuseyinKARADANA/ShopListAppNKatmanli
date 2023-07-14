@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Abstract;
 using DataAccessLayer.Contexts;
+using EntityLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -52,6 +53,11 @@ namespace DataAccessLayer.Concrete.Repository
             using var context = new AppDbContext(options);
             context.Update(t);
             context.SaveChanges();
+        }
+        public User GetUserByEmailAndPassword(string email, string password)
+        {
+            using var context = new AppDbContext(options);
+            return context.Users.FirstOrDefault(x => x.Email == email && x.Password == password);
         }
     }
 }
