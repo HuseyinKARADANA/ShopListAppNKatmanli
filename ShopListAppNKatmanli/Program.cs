@@ -10,6 +10,7 @@ using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete.EntityFramework;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ShopListAppNKatmanli
 {
@@ -35,6 +36,13 @@ namespace ShopListAppNKatmanli
 
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.Cookie.Name = "ShopListApp";
+                options.LoginPath = "/Session/Login";//login yapma sayfasý
+                options.AccessDeniedPath = "/Session/Login";//yetkisizse buraya atýyor
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -53,6 +61,7 @@ namespace ShopListAppNKatmanli
 
             app.UseRouting();
 
+            app.UseAuthentication();//kullanýcýyý kontrol eder
             app.UseAuthorization();
 
             app.MapControllerRoute(

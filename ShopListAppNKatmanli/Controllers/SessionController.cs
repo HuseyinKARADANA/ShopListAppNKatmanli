@@ -8,6 +8,9 @@ using ShopListAppNKatmanli.Models;
 using BusinessLayer.Concrete;
 using EntityLayer.Concrete;
 using BusinessLayer.Abstract;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace ShopListAppNKatmanli.Controllers
 {
@@ -63,25 +66,35 @@ namespace ShopListAppNKatmanli.Controllers
 
 
         [HttpPost]
-        public IActionResult Login(User p)
+        public async Task<IActionResult>Login(User p)
         {
-
             var isLoggedIn = _userService.Login(p.Email, p.Password);
             if (isLoggedIn)
             {
-                @ViewBag.IndexCss = "Index";
-                @ViewBag.Index = "active";
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, p.Email),
+                    new Claim(ClaimTypes.Role, "User")
+                };
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+                var authenticationProperties = new AuthenticationProperties();
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authenticationProperties);
+
                 return RedirectToAction("Index", "Home");
             }
-            else
-            {
-                ViewBag.login = "login";
-                ViewBag.loginActive = "active";
-                return View();
-            }
+            ViewBag.login = "login";
+            ViewBag.loginActive = "active";
+            return View();
 
+        }
 
-
+        public async Task<ActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

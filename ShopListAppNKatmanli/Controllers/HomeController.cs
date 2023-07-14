@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ShopListAppNKatmanli.Models;
 using System.Diagnostics;
 
 namespace ShopListAppNKatmanli.Controllers
 {
+    [Authorize(Roles ="User")]
     public class HomeController : Controller
     {
         
