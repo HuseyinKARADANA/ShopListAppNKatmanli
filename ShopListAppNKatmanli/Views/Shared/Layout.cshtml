@@ -46,11 +46,15 @@
             <li>
                 <a href="/Cart/Index/" class="@ViewBag.Cart"> Cart</a>
             </li>
-            
-            <li><a href="/Session/Login/">Login</a></li>
-            <li><a href="/Session/Register/" class="@ViewBag.registerActive">Register</a></li>
-            <li><a href="/Session/LogOut" >Log Out</a></li>
-               
+            @if (!Context.User.Identity.IsAuthenticated)
+            {
+                <li><a href="/Session/Login/">Login</a></li>
+                <li><a href="/Session/Register/" class="@ViewBag.registerActive">Register</a></li>
+            }
+            else
+            {
+                <li><a href="/Session/LogOut">Log Out</a></li>
+            }
 
 
 

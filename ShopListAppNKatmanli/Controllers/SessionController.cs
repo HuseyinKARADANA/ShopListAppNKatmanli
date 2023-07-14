@@ -85,6 +85,7 @@ namespace ShopListAppNKatmanli.Controllers
 
                 return RedirectToAction("Index", "Home");
             }
+            
             ViewBag.login = "login";
             ViewBag.loginActive = "active";
             return View();
