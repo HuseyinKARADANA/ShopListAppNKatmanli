@@ -25,14 +25,14 @@ namespace ShopListAppNKatmanli.Controllers
         {
             ViewBag.register = "register";
             ViewBag.registerActive = "active";
-            return View(new UserAddViewModel());
+            return View(new UserViewModel());
         }
 
         [HttpPost]
-        public ActionResult Register(UserAddViewModel model)
+        public ActionResult Register(UserViewModel model)
         {
             
-                Console.WriteLine("buraya geldi");
+            
                 _userService.Insert(new User()
                 {
                     Name = model.Name,
@@ -49,32 +49,26 @@ namespace ShopListAppNKatmanli.Controllers
 
                 return RedirectToAction("Index", "Home");
 
-                
-            
-            ViewBag.register = "register";
-            ViewBag.registerActive = "active";
-            return View(model);
 
         }
 
         [HttpGet]//Default
         public IActionResult Login()
         {
-            ViewBag.login = "register";
+            ViewBag.login = "login";
             ViewBag.loginActive = "active";
             return View();
         }
 
 
         [HttpPost]
-        public IActionResult Login(User newUser)
+        public async Task<IActionResult> Login(UserViewModel p)
         {
-
            
-
-            ViewBag.login = "register";
+            ViewBag.login = "login";
             ViewBag.loginActive = "active";
-            return RedirectToAction("Login", "Session");
+            return View();
+
         }
     }
 }

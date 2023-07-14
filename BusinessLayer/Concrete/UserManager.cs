@@ -45,26 +45,7 @@ namespace BusinessLayer.Concrete
             _userDal.Update(t);
         }
 
-        public bool Login(User newUser)
-        {
-            // Check if email and password are provided
-            if (newUser.Password != null && newUser.Email != null)
-            {
-                // Find the user with the provided email and password
-                var user = _userDal.GetListAll()
-                    .FirstOrDefault(x => x.Email == newUser.Email && x.Password == newUser.Password);
-
-                if (user != null)
-                {
-                    // User exists, perform the necessary actions
-                    // For example, you can set user-related information in the session or perform any other business logic.
-
-                    return true;
-                }
-            }
-
-            return false;
-        }
+       
 
     }
 }
