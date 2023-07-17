@@ -5,15 +5,20 @@ using System.Diagnostics;
 
 namespace ShopListAppNKatmanli.Controllers
 {
-    [Authorize(Roles ="User")]
+    [Authorize]
     public class HomeController : Controller
     {
         
 
         public IActionResult Index()
         {
-            @ViewBag.IndexCss = "Index";
-            @ViewBag.Index = "active";
+           
+            return View();
+        }
+
+
+        public IActionResult Contact()
+        {
             return View();
         }
 

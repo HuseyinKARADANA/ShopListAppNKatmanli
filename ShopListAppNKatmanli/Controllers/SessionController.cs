@@ -51,7 +51,7 @@ namespace ShopListAppNKatmanli.Controllers
                 });
                
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Session");
 
 
         }

@@ -4,61 +4,64 @@
 @{
     Layout = "~/Views/Shared/Layout.cshtml";
 }
-<div class="center">
-<section class="container" style="">
-    <header>Registration Form</header>
-    <form class="form" method="post">
-        <div class="input-box">
-            <label>Name</label>
-            <input type="text" placeholder="Enter your name" name="Name" required />
-        </div>
 
-        <div class="input-box">
-            <label>Surname</label>
-            <input type="text" placeholder="Enter your surname" name="Surname" required />
-        </div>
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+        <div class="col-lg-8">
+            <div class="mb-4">
+                <h4 class="font-weight-semi-bold mb-4">Register</h4>
+                <form class="form" method="post">
+                <div class="row">
 
-        <div class="input-box">
-            <label>Email Address</label>
-            <input type="email" placeholder="Enter your email address" name="Email" required />
-        </div>
-        <div class="input-box">
-            <label>User Name</label>
-            <input type="text" placeholder="Enter your user name" name="UserName" required />
-        </div>
-        <div class="input-box">
-            <label>Password</label>
-            <input type="password" placeholder="Enter your password" name="Password" required />
-        </div>
+                    <div class="col-md-6 form-group">
+                        <label>First Name</label>
+                        <input class="form-control" type="text" placeholder="John" name="Name" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Last Name</label>
+                        <input class="form-control" type="text" placeholder="Doe" name="Surname" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>E-mail</label>
+                        <input class="form-control" type="text" placeholder="example@email.com" name="Email" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Mobile No</label>
+                        <input class="form-control" type="text" placeholder="+123 456 789" name="PhoneNumber" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Username</label>
+                        <input class="form-control" type="text" placeholder="Your username" name="UserName" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Password</label>
+                        <input class="form-control" type="password" placeholder="Your password" name="Password" required>
+                    </div>
 
-        <div class="column">
-            <div class="input-box">
-                <label>Phone Number</label>
-                <input type="number" placeholder="Enter phone number" name="PhoneNumber" required />
-            </div>
-            <div class="input-box">
-                <label>Birth Date</label>
-                <input type="date" placeholder="Enter birth date" name="BirthDate" required />
-            </div>
-        </div>
-        <div class="gender-box">
-            <h3>Gender</h3>
-            <div class="gender-option">
-                <div class="gender">
-                    <input type="radio" id="check-male" name="Gender" value="Male" checked />
-                    <label for="check-male">male</label>
+                    <div class="col-md-6 form-group">
+                        <label>Birth date</label>
+                        <input class="form-control" type="date" name="BirthDate" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Gender</label>
+                        <div class="gender-option">
+                            <div class="gender">
+                                <input type="radio" id="check-male" name="Gender" checked />
+                                <label for="check-male">male</label>
+                            </div>
+                            <div class="gender">
+                                <input type="radio" id="check-female" name="Gender" />
+                                <label for="check-female">Female</label>
+                            </div>
+                        </div>
+
+                        <div class="card-footer border-secondary bg-transparent">
+                            <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Create account</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="gender">
-                    <input type="radio" id="check-female" name="Gender" value="Female" />
-                    <label for="check-female">Female</label>
-                </div>
+                </form>
             </div>
+
         </div>
-       
-
-        <button type="submit">Submit</button>
-    </form>
-    
-</section>
-
-</div>
+    </div>
