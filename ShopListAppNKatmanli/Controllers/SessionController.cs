@@ -33,61 +33,34 @@ namespace ShopListAppNKatmanli.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(UserViewModel model)
+        public async Task<IActionResult> Register(User user)
         {
-            
-            
-                _userService.Insert(new User()
-                {
-                    Name = model.Name,
-                    Surname = model.Surname,
-                    Email = model.Email,
-                    Gender = model.Gender,
-                    BirthDate = model.BirthDate,
-                    PhoneNumber = model.PhoneNumber,
-                    RegisterDate = System.DateTime.Now,
-                    UserName = model.UserName,
-                    Password = model.Password
-                });
-               
+            var httpClient = new HttpClient();
+            var response = await httpClient.PostAsJsonAsync("https://localhost:7264/api/Users/register", user);
 
-                return RedirectToAction("Login", "Session");
-
+            return RedirectToAction("Login", "Session");
 
         }
 
         [HttpGet]
         public IActionResult Login()
         {
-            ViewBag.login = "login";
-            ViewBag.loginActive = "active";
             return View();
         }
 
 
         [HttpPost]
-        public async Task<IActionResult>Login(User p)
+        public async Task<IActionResult> Login(User p)
         {
-            var isLoggedIn = _userService.Login(p.Email, p.Password);
-            if (isLoggedIn)
+
+            var httpClient = new HttpClient();
+            var response = await httpClient.PostAsJsonAsync("https://localhost:7264/api/Users/login", p);
+
+            if (response.IsSuccessStatusCode)
             {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, p.Email),
-                    new Claim(ClaimTypes.Role, "User")
-                };
-
-                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var principal = new ClaimsPrincipal(identity);
-                var authenticationProperties = new AuthenticationProperties();
-
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authenticationProperties);
-
                 return RedirectToAction("Index", "Home");
             }
-            
-            ViewBag.login = "login";
-            ViewBag.loginActive = "active";
+
             return View();
 
         }
