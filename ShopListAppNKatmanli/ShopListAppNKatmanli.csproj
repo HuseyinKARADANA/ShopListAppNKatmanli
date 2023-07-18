@@ -24,9 +24,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\WebApiTest\WebApiTest\WebApiTest.csproj" />
-    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
-    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
-    <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
 </Project>

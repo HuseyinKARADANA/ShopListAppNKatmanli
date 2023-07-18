@@ -25,23 +25,23 @@ namespace ShopListAppNKatmanli
 
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            builder.Services.AddScoped<IUserDal, EfUserDal>(); // Eðer IUserDal'ýn somut bir implementasyonu yoksa, bu kýsmý ekleyin.
+            //builder.Services.AddScoped<IUserDal, EfUserDal>(); // Eðer IUserDal'ýn somut bir implementasyonu yoksa, bu kýsmý ekleyin.
 
-            builder.Services.AddScoped<IUserService, UserManager>();
+            //builder.Services.AddScoped<IUserService, UserManager>();
            
-            builder.Services.AddDbContext<AppDbContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
-            });
+            //builder.Services.AddDbContext<AppDbContext>(options =>
+            //{
+            //    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
+            //});
 
-            builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            //builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-            {
-                options.Cookie.Name = "ShopListApp";
-                options.LoginPath = "/Session/Login";//login yapma sayfasý
-                options.AccessDeniedPath = "/Session/Login";//yetkisizse buraya atýyor
-            });
+            //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            //{
+            //    options.Cookie.Name = "ShopListApp";
+            //    options.LoginPath = "/Session/Login";//login yapma sayfasý
+            //    options.AccessDeniedPath = "/Session/Login";//yetkisizse buraya atýyor
+            //});
 
             var app = builder.Build();
 
@@ -61,7 +61,7 @@ namespace ShopListAppNKatmanli
 
             app.UseRouting();
 
-            app.UseAuthentication();//kullanýcýyý kontrol eder
+            //app.UseAuthentication();//kullanýcýyý kontrol eder
             app.UseAuthorization();
 
             app.MapControllerRoute(
