@@ -9,34 +9,18 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Autofac.Core;
 
 
-            var builder = WebApplication.CreateBuilder(args);
+  var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            
+ builder.Services.AddControllersWithViews();
 
-            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 
        
 
 
-//builder.Services.AddScoped<IUserDal, EfUserDal>(); // Eðer IUserDal'ýn somut bir implementasyonu yoksa, bu kýsmý ekleyin.
 
-//builder.Services.AddScoped<IUserService, UserManager>();
-
-//builder.Services.AddDbContext<AppDbContext>(options =>
-//{
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
-//});
-
-//builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
-//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-//{
-//    options.Cookie.Name = "ShopListApp";
-//    options.LoginPath = "/Session/Login";//login yapma sayfasý
-//    options.AccessDeniedPath = "/Session/Login";//yetkisizse buraya atýyor
-//});
 
 var app = builder.Build();
 

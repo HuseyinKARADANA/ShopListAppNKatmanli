@@ -27,7 +27,7 @@ namespace ShopListAppNKatmanli.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(string s)
+        public async Task<IActionResult> Register(RegisterDTO p)
         {
             var httpClient = new HttpClient();
 
@@ -36,7 +36,7 @@ namespace ShopListAppNKatmanli.Controllers
             var content = new StringContent(json, Encoding.UTF8, "application/json");*/
 
             //Sending a response with the serialized json format
-            var response = await httpClient.PostAsJsonAsync("https://localhost:7264/api/Users/register", s);
+            var response = await httpClient.PostAsJsonAsync("https://localhost:7297/api/Users/register", p);
 
             if (response.IsSuccessStatusCode)
             {
@@ -65,28 +65,25 @@ namespace ShopListAppNKatmanli.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-
-
             return View();
 
         }
 
 
 
-        //    public async Task<ActionResult> LogOut()
-        //    {
+        public async Task<ActionResult> LogOut()
+        {
 
 
-        //        var httpClient = new HttpClient();
-        //        var response = await httpClient.PostAsJsonAsync("https://localhost:7264/api/Users/logout",);
+            
+                var httpClient = new HttpClient();
+                var response = httpClient.GetAsync("https://localhost:7297/api/Users/logout");
+            
 
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            return RedirectToAction("Index", "Home");
-        //        }
+                return RedirectToAction("Login", "Session");
+            
 
-        //        return View();
-        //    }
-        //}
+            
+        }
     }
 }
