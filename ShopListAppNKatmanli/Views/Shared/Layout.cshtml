@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    //var username = Context.User.Identity.Name;
+    //var role = Context.User.IsInRole("User") ? "User" : "Guest";
+    //var accessToken = Context.Request.Cookies["access_token"];
+    var accessToken = HttpContextAccessor.HttpContext.Request.Cookies["access_token"];
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -18,9 +27,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+   
     <link href="/css/style.css"rel="stylesheet" />
-    <link href="/css/style.min.css" rel="stylesheet" />
+   
     
 </head>
 <body >
@@ -138,21 +147,18 @@
                             </div>
                             <a href="/Home/Contact/" class="nav-item nav-link active">Contact</a>
                         </div>
-                        @if (!Context.User.Identity.IsAuthenticated)
-                        {
+                        <!--if else ile değişecek-->
                             <div class="navbar-nav ml-auto py-0">
                                 <a href="/Session/Login/" class="nav-item nav-link">Login</a>
                                 <a href="/Session/Register/" class="nav-item nav-link">Register</a>
                             </div>
-                        }
-                        else
-                        {
+                       
                             <div class="navbar-nav ml-auto py-0">
-                                <a href="#" class="nav-item nav-link">My Profile</a>
-                                <a href="/Session/LogOut" class="nav-item nav-link">Sing Out</a>
+                                <a href="/Dashboard/Index" class="nav-item nav-link">My Profile</a>
+                                <a href="/Session/LogOut/" class="nav-item nav-link">Sign Out</a>
                             </div>
                             
-                        }
+                        
                     </div>
                 </nav>
             </div>

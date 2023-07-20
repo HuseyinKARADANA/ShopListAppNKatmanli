@@ -30,6 +30,11 @@ namespace BusinessLayer.Concrete
             return _userDal.GetElementById(id);
         }
 
+        public User GetElementByUsername(string username)
+        {
+            return _userDal.GetElementByUsername(username);
+        }
+
         public List<User> GetListAll()
         {
             return _userDal.GetListAll();

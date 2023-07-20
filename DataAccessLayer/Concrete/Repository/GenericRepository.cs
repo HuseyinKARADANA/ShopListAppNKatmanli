@@ -32,6 +32,12 @@ namespace DataAccessLayer.Concrete.Repository
             return context.Set<T>().Find(id);
         }
 
+        public User GetElementByUsername(string username)
+        {
+            using var context = new AppDbContext(options);
+            return context.Users.FirstOrDefault(x => x.UserName == username);
+        }
+
         public List<T> GetListAll()
         {
             
