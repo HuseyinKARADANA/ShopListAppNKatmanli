@@ -10,6 +10,5 @@ namespace BusinessLayer.Abstract
     public interface ISubCategoryService : IGenericService<SubCategory>
     {
         SubCategory GetSubCategoryByName(string name);
-
     }
 }

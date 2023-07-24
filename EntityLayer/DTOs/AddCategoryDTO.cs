@@ -7,17 +7,14 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.DTOs
 {
-    public class GetCategoryDTO
+    public class AddCategoryDTO
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
-        public static explicit operator GetCategoryDTO(Category category)
+        public static explicit operator AddCategoryDTO(Category category)
         {
-            return new GetCategoryDTO
+            return new AddCategoryDTO
             {
-                Id = category.Id,
                 Name = category.Name
             };
         }

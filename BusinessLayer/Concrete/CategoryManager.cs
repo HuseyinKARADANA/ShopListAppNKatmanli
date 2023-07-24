@@ -43,7 +43,6 @@ namespace BusinessLayer.Concrete
         {
             _categoryDal.Update(t);
         }
-
         public Category GetCategoryByName(string name)
         {
             return _categoryDal.GetCategoryByName(name);

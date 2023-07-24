@@ -32,6 +32,12 @@ namespace DataAccessLayer.Concrete.Repository
             return context.Set<T>().Find(id);
         }
 
+        public User GetElementByUsername(string username)
+        {
+            using var context = new AppDbContext(options);
+            return context.Users.FirstOrDefault(x => x.UserName == username);
+        }
+
         public List<T> GetListAll()
         {
             
@@ -53,12 +59,6 @@ namespace DataAccessLayer.Concrete.Repository
             using var context = new AppDbContext(options);
             context.Update(t);
             context.SaveChanges();
-        }
-
-        public User GetElementByUsername(string username)
-        {
-            using var context = new AppDbContext(options);
-            return context.Users.FirstOrDefault(x => x.UserName == username);
         }
         public User GetUserByEmailAndPassword(string email, string password)
         {
@@ -83,5 +83,12 @@ namespace DataAccessLayer.Concrete.Repository
             using var context = new AppDbContext(options);
             return context.CategoryDetails.FirstOrDefault(x => x.Name == name);
         }
+
+        public Item GetItemByBrand(string brand)
+        {
+            using var context = new AppDbContext(options);
+            return context.Items.FirstOrDefault(x => x.Brand == brand);
+        }
+
     }
 }

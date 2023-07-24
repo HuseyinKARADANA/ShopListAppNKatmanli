@@ -43,23 +43,7 @@ namespace DataAccessLayer.Contexts
                 .HasForeignKey(od => od.OrderId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            modelBuilder.Entity<Invoice>()
-                .HasOne(i => i.Order)
-                .WithMany(o => o.Invoices)
-                .HasForeignKey(i => i.OrderId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            modelBuilder.Entity<InvoiceDetail>()
-                .HasOne(id => id.ItemDetail)
-                .WithMany(i => i.InvoiceDetails)
-                .HasForeignKey(id => id.ItemDetailId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            modelBuilder.Entity<InvoiceDetail>()
-                .HasOne(id => id.OrderDetail)
-                .WithMany(od => od.InvoiceDetails)
-                .HasForeignKey(id => id.OrderDetailId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+            
 
 
             modelBuilder.Entity<Category>(entity =>
@@ -129,11 +113,9 @@ namespace DataAccessLayer.Contexts
 
         public DbSet<CategoryDetail> CategoryDetails { get; set; }
 
-        public DbSet<ItemDetail> ItemDetails { get; set; }
+        public DbSet<Item> Items { get; set; }
 
-        public DbSet<Image> Images { get; set; }
-
-        public DbSet<SmartPhone> SmartPhones { get; set; }
+        
 
         
 
@@ -144,12 +126,6 @@ namespace DataAccessLayer.Contexts
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
-        public DbSet<Payment> Payments { get; set; }
-
-        public DbSet<PaymentType> PaymentTypes { get; set; }
-
-        public DbSet<Invoice> Invoices { get; set; }
-
-        public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
+        
     }
 }

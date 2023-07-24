@@ -10,6 +10,5 @@ namespace DataAccessLayer.Abstract
     public interface ICategoryDal : IGenericDal<Category>
     {
         Category GetCategoryByName(string name);
-
     }
 }

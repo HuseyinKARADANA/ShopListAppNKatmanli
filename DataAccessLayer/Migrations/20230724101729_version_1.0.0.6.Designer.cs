@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230721131428_OrderRealtedClassesAdded")]
-    partial class OrderRealtedClassesAdded
+    [Migration("20230724101729_version_1.0.0.6")]
+    partial class version_1006
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -161,7 +161,7 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ItemDetailId")
+                    b.Property<int>("ItemId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -169,14 +169,14 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemDetailId");
+                    b.HasIndex("ItemId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("FavoriteItemUsers");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Image", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Item", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -184,94 +184,9 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<byte[]>("AdImage")
+                    b.Property<string>("Brand")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<int>("ItemDetailId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Images");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Invoice", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("FicheNo")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("MyProperty")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("Invoices");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.InvoiceDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InvoiceId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemDetailId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("LineTotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("OrderDetailId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InvoiceId");
-
-                    b.HasIndex("ItemDetailId");
-
-                    b.HasIndex("OrderDetailId");
-
-                    b.ToTable("InvoiceDetails");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.ItemDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CategoryDetailId")
                         .HasColumnType("int");
@@ -279,14 +194,26 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("FavoriteCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("FeatureId")
-                        .HasColumnType("int");
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("SubCategoryId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -295,7 +222,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ItemDetails");
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Order", b =>
@@ -311,6 +238,10 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ShareCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -342,7 +273,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<int>("ItemDetailId")
+                    b.Property<int>("ItemId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("LineTotal")
@@ -356,109 +287,11 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemDetailId");
+                    b.HasIndex("ItemId");
 
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderDetails");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Payment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ApproveCode")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsApproved")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("PaymentTotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("PaymentTypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("PaymentTypeId");
-
-                    b.ToTable("Payments");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.PaymentType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PaymentTypes");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.SmartPhone", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BatteryPower")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Brand")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FrontCameraResolution")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Memory")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("RAMCapacity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RearCameraResolution")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("ScreenSize")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SmartPhones");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.SubCategory", b =>
@@ -577,9 +410,9 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.FavoriteItemUser", b =>
                 {
-                    b.HasOne("EntityLayer.Concrete.ItemDetail", "ItemDetail")
+                    b.HasOne("EntityLayer.Concrete.Item", "Item")
                         .WithMany("FavoriteItemUsers")
-                        .HasForeignKey("ItemDetailId")
+                        .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -588,55 +421,12 @@ namespace DataAccessLayer.Migrations
                         .HasForeignKey("UserId")
                         .IsRequired();
 
-                    b.Navigation("ItemDetail");
+                    b.Navigation("Item");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Invoice", b =>
-                {
-                    b.HasOne("EntityLayer.Concrete.Address", "Address")
-                        .WithMany("Invoices")
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.Concrete.Order", "Order")
-                        .WithMany("Invoices")
-                        .HasForeignKey("OrderId")
-                        .IsRequired();
-
-                    b.Navigation("Address");
-
-                    b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.InvoiceDetail", b =>
-                {
-                    b.HasOne("EntityLayer.Concrete.Invoice", "Invoice")
-                        .WithMany("InvoiceDetails")
-                        .HasForeignKey("InvoiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.Concrete.ItemDetail", "ItemDetail")
-                        .WithMany("InvoiceDetails")
-                        .HasForeignKey("ItemDetailId")
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.Concrete.OrderDetail", "OrderDetail")
-                        .WithMany("InvoiceDetails")
-                        .HasForeignKey("OrderDetailId")
-                        .IsRequired();
-
-                    b.Navigation("Invoice");
-
-                    b.Navigation("ItemDetail");
-
-                    b.Navigation("OrderDetail");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.ItemDetail", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Item", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.User", "User")
                         .WithMany("ItemDetails")
@@ -667,9 +457,9 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.OrderDetail", b =>
                 {
-                    b.HasOne("EntityLayer.Concrete.ItemDetail", "ItemDetail")
+                    b.HasOne("EntityLayer.Concrete.Item", "Item")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("ItemDetailId")
+                        .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -678,34 +468,13 @@ namespace DataAccessLayer.Migrations
                         .HasForeignKey("OrderId")
                         .IsRequired();
 
-                    b.Navigation("ItemDetail");
+                    b.Navigation("Item");
 
                     b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Payment", b =>
-                {
-                    b.HasOne("EntityLayer.Concrete.Order", "Order")
-                        .WithMany("Payments")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.Concrete.PaymentType", "PaymentType")
-                        .WithMany("Payments")
-                        .HasForeignKey("PaymentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("PaymentType");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Address", b =>
                 {
-                    b.Navigation("Invoices");
-
                     b.Navigation("Orders");
                 });
 
@@ -714,37 +483,16 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("CategoryDetail");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Invoice", b =>
-                {
-                    b.Navigation("InvoiceDetails");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.ItemDetail", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Item", b =>
                 {
                     b.Navigation("FavoriteItemUsers");
-
-                    b.Navigation("InvoiceDetails");
 
                     b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Order", b =>
                 {
-                    b.Navigation("Invoices");
-
                     b.Navigation("OrderDetails");
-
-                    b.Navigation("Payments");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.OrderDetail", b =>
-                {
-                    b.Navigation("InvoiceDetails");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.PaymentType", b =>
-                {
-                    b.Navigation("Payments");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.User", b =>

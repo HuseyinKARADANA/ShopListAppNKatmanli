@@ -42,7 +42,6 @@ namespace BusinessLayer.Concrete
         {
             _subCategoryDal.Update(t);
         }
-
         public SubCategory GetSubCategoryByName(string name)
         {
             return _subCategoryDal.GetSubCategoryByName(name);

@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete.EntityFramework
 {
-    public class EfSmartPhoneDal : GenericRepository<SmartPhone>, ISmartPhoneDal
+    public class EfItemDal:GenericRepository<Item>,IItemDal
     {
-        public EfSmartPhoneDal(DbContextOptions<AppDbContext> options) : base(options)
+        public EfItemDal(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
     }

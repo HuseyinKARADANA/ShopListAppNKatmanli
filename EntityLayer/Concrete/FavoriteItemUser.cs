@@ -8,8 +8,8 @@
 
         public User User { get; set; }
 
-        public int ItemDetailId { get; set; }
+        public int ItemId { get; set; }
 
-        public ItemDetail ItemDetail { get; set; }
+        public Item Item { get; set; }
     }
 }
