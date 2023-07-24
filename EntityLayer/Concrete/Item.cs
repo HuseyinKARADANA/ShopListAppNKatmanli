@@ -12,7 +12,6 @@
 
         public int CategoryDetailId { get; set; }
 
-        public int FeatureId { get; set; }
 
         public int UserId { get; set; }
 
