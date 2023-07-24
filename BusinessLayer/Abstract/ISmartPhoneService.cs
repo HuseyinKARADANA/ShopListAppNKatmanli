@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IUserService : IGenericService<User>
+    public interface ISmartPhoneService : IGenericService<SmartPhone>
     {
-
-        bool Login(string email, string password);
-
-        User GetElementByUsername(string username);
 
 
     }

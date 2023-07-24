@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IUserService : IGenericService<User>
+    public interface ICategoryService : IGenericService<Category>
     {
-
-        bool Login(string email, string password);
-
-        User GetElementByUsername(string username);
-
-
+        Category GetCategoryByName(string name);
     }
 }

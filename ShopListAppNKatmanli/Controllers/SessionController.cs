@@ -27,16 +27,10 @@ namespace ShopListAppNKatmanli.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterDTO p)
+        public async Task<IActionResult> Register(GetAddressDTO registerDto)
         {
             var httpClient = new HttpClient();
-
-            //Serializing the user object
-            /*var json = JsonSerializer.Serialize(user);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");*/
-
-            //Sending a response with the serialized json format
-            var response = await httpClient.PostAsJsonAsync("https://localhost:7297/api/Users/register", p);
+            var response = await httpClient.PostAsJsonAsync("https://localhost:7297/api/Users/register", registerDto.Id);
 
             if (response.IsSuccessStatusCode)
             {
@@ -65,6 +59,8 @@ namespace ShopListAppNKatmanli.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+
+
             return View();
 
         }
@@ -75,15 +71,15 @@ namespace ShopListAppNKatmanli.Controllers
         {
 
 
-            
-                var httpClient = new HttpClient();
-                var response = httpClient.GetAsync("https://localhost:7297/api/Users/logout");
-            
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync("https://localhost:7297/api/Users/logout");
 
-                return RedirectToAction("Login", "Session");
-            
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
-            
+            return RedirectToAction("Index", "Home");
         }
     }
 }

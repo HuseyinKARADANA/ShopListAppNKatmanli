@@ -2,7 +2,6 @@
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer.Concrete;
-using EntityLayer.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -29,6 +28,11 @@ namespace BusinessLayer.Concrete
         public User GetElementById(int id)
         {
             return _userDal.GetElementById(id);
+        }
+
+        public User GetElementByUsername(string username)
+        {
+            return _userDal.GetElementByUsername(username);
         }
 
         public List<User> GetListAll()

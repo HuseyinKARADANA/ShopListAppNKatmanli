@@ -13,6 +13,7 @@ namespace DataAccessLayer.Abstract
     public interface IUserDal:IGenericDal<User>//user data access layer interface
     {
         User GetUserByEmailAndPassword(string email, string password);
+        User GetElementByUsername(string username);
 
     }
 }

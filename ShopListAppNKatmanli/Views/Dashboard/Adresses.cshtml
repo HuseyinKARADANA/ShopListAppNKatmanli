@@ -1,0 +1,89 @@
+﻿@using EntityLayer.DTOs
+@model List<GetAddressDTO>
+
+@{
+    ViewData["Title"] = "Adresses";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+        <!-- Shop Sidebar Start -->
+        <div class="col-lg-3 col-md-12">
+
+            <!-- Size Start -->
+            <div class="mb-5">
+                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="font-weight-semi-bold mb-4">Settings</h5>
+                </div>
+                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <a href="/Dashboard/Index/" class="text-dark">Profile</a>
+                </div>
+
+                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <a href="/Dashboard/Adresses" class="text-dark">Adresses</a>
+                </div>
+                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <a href="" class="text-dark">My Products</a>
+                </div>
+                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <a href="" class="text-dark">Cards</a>
+                </div>
+                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <a href="" class="text-dark">Security</a>
+                </div>
+                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <a href="" class="text-dark">Log Out</a>
+                </div>
+
+            </div>
+            <!-- Size End -->
+        </div>
+        <!-- Shop Sidebar End -->
+        <div class="col-lg-9 col-md-12">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Address Name</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Town</th>
+                        <th scope="col">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                   
+                    @foreach(var  item in Model){
+                        
+                            <tr>
+                            <th scope="row">@item.Id</th>
+                                    <td>@item.AddressName</td>
+                                    <td>@item.CountryName</td>
+                                    <td>@item.CityName</td>
+                                    <td>@item.TownName</td>
+                                    <td>
+
+                                        <a href="/Dashboard/GetAddressDetail/@item.Id" class="btn" style="background-color: #58f13a;">Detail</a>-
+                                        <a href="/Dashboard/GetAddress/@item.Id" class="btn btn-primary">Update</a>-
+                                        <a href="/Dashboard/DeleteAddress/@item.Id" class="btn btn-danger" >Delete</a>
+                                    </td>
+                            </tr>
+                    }
+
+
+                </tbody>
+            </table>
+            
+            <a type="button" style="background-color:#4d056e;color: #fff;" class="btn" href="/Dashboard/AddAddresses">
+                New Addresses
+            </a>
+             
+           
+            
+        </div>
+    </div>
+</div>
+
+

@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\WebApiTest-master\WebApiTest\WebApiTest.csproj" />
+    <ProjectReference Include="..\..\WebApiTest\WebApiTest\WebApiTest.csproj" />
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
