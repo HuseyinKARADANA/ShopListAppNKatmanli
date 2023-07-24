@@ -23,6 +23,8 @@ namespace BusinessLayer.Concrete
             _categoryDetailDal.Delete(t);
         }
 
+        
+
         public CategoryDetail GetElementById(int id)
         {
             return _categoryDetailDal.GetElementById(id);
@@ -41,6 +43,10 @@ namespace BusinessLayer.Concrete
         public void Update(CategoryDetail t)
         {
             _categoryDetailDal.Update(t);
+        }
+        public CategoryDetail GetCategoryDetailByName(string name)
+        {
+            return _categoryDetailDal.GetCategoryDetailByName(name);
         }
     }
 }

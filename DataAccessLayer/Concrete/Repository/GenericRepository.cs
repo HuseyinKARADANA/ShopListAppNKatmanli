@@ -65,5 +65,24 @@ namespace DataAccessLayer.Concrete.Repository
             using var context = new AppDbContext(options);
             return context.Users.FirstOrDefault(x => x.Email == email && x.Password == password);
         }
+
+        public Category GetCategoryByName(string name)
+        {
+            using var context = new AppDbContext(options);
+            return context.Categories.FirstOrDefault(x => x.Name == name);
+        }
+
+        public SubCategory GetSubCategoryByName(string name)
+        {
+            using var context = new AppDbContext(options);
+            return context.SubCategories.FirstOrDefault(x => x.Name == name);
+        }
+
+        public CategoryDetail GetCategoryDetailByName(string name)
+        {
+            using var context = new AppDbContext(options);
+            return context.CategoryDetails.FirstOrDefault(x => x.Name == name);
+        }
+
     }
 }

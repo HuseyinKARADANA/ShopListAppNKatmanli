@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface ICategoryDetailDal : IGenericDal<CategoryDetail>
     {
+        CategoryDetail GetCategoryDetailByName(string name);
     }
 }
