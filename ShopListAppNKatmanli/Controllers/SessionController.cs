@@ -27,10 +27,10 @@ namespace ShopListAppNKatmanli.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterDTO registerDto)
+        public async Task<IActionResult> Register(GetAddressDTO registerDto)
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.PostAsJsonAsync("https://localhost:7297/api/Users/register", registerDto);
+            var response = await httpClient.PostAsJsonAsync("https://localhost:7297/api/Users/register", registerDto.Id);
 
             if (response.IsSuccessStatusCode)
             {

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
-
+using DataAccessLayer.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +16,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 
-       
+
 
 
 //builder.Services.AddScoped<IUserDal, EfUserDal>(); // Eðer IUserDal'ýn somut bir implementasyonu yoksa, bu kýsmý ekleyin.
