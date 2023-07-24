@@ -16,26 +16,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 
+//migration sonrasý yoruma alýnacak
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
+});
+//***************************************************************************
 
-
-
-//builder.Services.AddScoped<IUserDal, EfUserDal>(); // Eðer IUserDal'ýn somut bir implementasyonu yoksa, bu kýsmý ekleyin.
-
-//builder.Services.AddScoped<IUserService, UserManager>();
-
-//builder.Services.AddDbContext<AppDbContext>(options =>
-//{
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
-//});
-
-//builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
-//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-//{
-//    options.Cookie.Name = "ShopListApp";
-//    options.LoginPath = "/Session/Login";//login yapma sayfasý
-//    options.AccessDeniedPath = "/Session/Login";//yetkisizse buraya atýyor
-//});
 
 var app = builder.Build();
 
@@ -55,8 +42,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-//app.UseAuthentication();//kullanýcýyý kontrol eder
-//app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",

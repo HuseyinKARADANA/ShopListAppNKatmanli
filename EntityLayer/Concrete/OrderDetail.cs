@@ -8,9 +8,9 @@
 
         public Order Order { get; set; }
 
-        public int ItemDetailId { get; set; }
+        public int ItemId { get; set; }
 
-        public ItemDetail ItemDetail { get; set; }
+        public Item Item { get; set; }
 
         public int Amount { get; set; }
 
@@ -18,6 +18,6 @@
 
         public decimal LineTotal { get; set; }
 
-        public List<InvoiceDetail> InvoiceDetails { get; set; }
+        
     }
 }

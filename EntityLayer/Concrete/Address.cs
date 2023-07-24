@@ -26,7 +26,7 @@ namespace EntityLayer.Concrete
 
         public List<Order>? Orders { get; set; }
 
-        public List<Invoice>? Invoices { get; set; }
+
     }
 }
 

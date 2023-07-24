@@ -16,13 +16,13 @@
 
         public int AddressId { get; set; }
 
+        public string ShareCode { get; set; }
+
         public Address Address { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }
 
-        public List<Payment> Payments { get; set; }
 
-        public List<Invoice> Invoices { get; set; }
 
         
     }
