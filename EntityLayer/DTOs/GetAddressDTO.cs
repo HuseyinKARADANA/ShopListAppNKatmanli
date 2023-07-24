@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.DTOs
 {
-    public class AddressDTO
+    public class GetAddressDTO
     {
-        
+        public int Id { get; set; }
         public string AddressName { get; set; }
 
         public string CountryName { get; set; }
@@ -24,10 +24,11 @@ namespace EntityLayer.DTOs
 
         public string AddressText { get; set; }
 
-        public static explicit operator AddressDTO(Address address)
+        public static explicit operator GetAddressDTO(Address address)
         {
-            return new AddressDTO
+            return new GetAddressDTO
             {
+                Id = address.Id,
                 AddressName = address.AddressName,
                 CountryName = address.CountryName,
                 CityName = address.CityName,

@@ -28,7 +28,7 @@ namespace EntityLayer.Concrete
 
         public List<Address> Addresses { get; set; }
 
-        public List<Item> Items { get; set; }
+        public List<ItemDetail> ItemDetails { get; set; }
 
         public List<FavoriteItemUser> FavoriteItemUsers { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,9 +50,9 @@ namespace DataAccessLayer.Contexts
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             modelBuilder.Entity<InvoiceDetail>()
-                .HasOne(id => id.Item)
+                .HasOne(id => id.ItemDetail)
                 .WithMany(i => i.InvoiceDetails)
-                .HasForeignKey(id => id.ItemId)
+                .HasForeignKey(id => id.ItemDetailId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             modelBuilder.Entity<InvoiceDetail>()
@@ -130,9 +131,11 @@ namespace DataAccessLayer.Contexts
 
         public DbSet<ItemDetail> ItemDetails { get; set; }
 
+        public DbSet<Image> Images { get; set; }
+
         public DbSet<SmartPhone> SmartPhones { get; set; }
 
-        public DbSet<Item> Items { get; set; }
+        
 
 
         public DbSet<FavoriteItemUser> FavoriteItemUsers { get; set; }
