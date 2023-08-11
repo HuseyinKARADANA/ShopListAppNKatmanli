@@ -10,6 +10,7 @@ namespace EntityLayer.DTOs
     public class GetAddressDTO
     {
         public int Id { get; set; }
+        public int UserID { get; set; }
         public string AddressName { get; set; }
 
         public string CountryName { get; set; }
@@ -24,10 +25,11 @@ namespace EntityLayer.DTOs
 
         public string AddressText { get; set; }
 
-        public static explicit operator GetAddressDTO(Address address)
+        public static implicit operator GetAddressDTO(Address address)
         {
             return new GetAddressDTO
             {
+                UserID =address.UserId,
                 Id = address.Id,
                 AddressName = address.AddressName,
                 CountryName = address.CountryName,
@@ -38,5 +40,7 @@ namespace EntityLayer.DTOs
                 AddressText = address.AddressText
             };
         }
+
+
     }
 }

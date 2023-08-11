@@ -29,7 +29,7 @@
 
         public string Description { get; set; }
 
-
+        public int Discount { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }
 

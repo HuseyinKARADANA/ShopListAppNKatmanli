@@ -10,6 +10,8 @@ namespace BusinessLayer.Abstract
 {
     public interface IItemService:IGenericService<Item>
     {
+        Item GetItemByBrand(string name);
 
+        List<Item> GetItemsByUserId(int userId);
     }
 }

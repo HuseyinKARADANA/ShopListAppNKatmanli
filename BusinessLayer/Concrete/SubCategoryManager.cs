@@ -46,5 +46,10 @@ namespace BusinessLayer.Concrete
         {
             return _subCategoryDal.GetSubCategoryByName(name);
         }
+
+        public List<SubCategory> GetSubCategoriesByCategoryId(int categoryId)
+        {
+            return _subCategoryDal.GetSubCategoriesByCategoryId(categoryId);
+        }
     }
 }

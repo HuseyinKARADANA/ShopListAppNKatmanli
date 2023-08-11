@@ -1,5 +1,6 @@
 ﻿@using EntityLayer.DTOs
 @model DefaultAddressDTO
+
 @{
     ViewData["Title"] = "AddAddresses";
     Layout = "~/Views/Shared/Layout.cshtml";
@@ -9,10 +10,13 @@
     <div class="row px-xl-5">
         <div class="col-lg-8">
             <div class="mb-4">
-                <h4 class="font-weight-semi-bold mb-4">Register</h4>
+                <h4 class="font-weight-semi-bold mb-4">New Address</h4>
                 <form class="form" method="post" action="/Dashboard/AddAddresses">
                     <div class="row">
-
+                        @{
+                            var id = int.Parse(Context.Request.Cookies["UserID"]);
+                        }
+                        <input hidden value="@id" name="UserID" />
                         <div class="col-md-6 form-group">
                             <label>AddressName</label>
                             <input class="form-control" type="text" name="AddressName" required>
@@ -43,7 +47,7 @@
                         </div>
                         <div class="col-md-6 form-group">
                             <div class="card-footer border-secondary bg-transparent">
-                                <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Create account</button>
+                                <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Add Address</button>
                             </div>
                         </div>
                     </div>

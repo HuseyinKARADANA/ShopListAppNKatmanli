@@ -9,15 +9,17 @@ namespace EntityLayer.DTOs
 {
     public class GetSubCategoryDTO
     {
+        public int Id { get; set; }
 
         public int CategoryId { get; set; }
 
         public string Name { get; set; }
 
-        public static explicit operator GetSubCategoryDTO(SubCategory subCategory)
+        public static implicit operator GetSubCategoryDTO(SubCategory subCategory)
         {
             return new GetSubCategoryDTO
             {
+                Id = subCategory.Id,
                 CategoryId = subCategory.CategoryId,
                 Name = subCategory.Name
             };

@@ -6,24 +6,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DataAccessLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class OrderRealtedClasses : Migration
+    public partial class version_1006 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_FavoriteItemUsers_ItemDetails_ItemDetailId",
-                table: "FavoriteItemUsers");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_OrderDetails_ItemDetails_ItemDetailId",
-                table: "OrderDetails");
-
-            migrationBuilder.DropTable(
-                name: "Images");
-
             migrationBuilder.DropTable(
                 name: "InvoiceDetails");
+
+            migrationBuilder.DropTable(
+                name: "ItemDetails");
 
             migrationBuilder.DropTable(
                 name: "Payments");
@@ -35,30 +27,17 @@ namespace DataAccessLayer.Migrations
                 name: "Invoices");
 
             migrationBuilder.DropTable(
-                name: "ItemDetails");
-
-            migrationBuilder.DropTable(
                 name: "PaymentTypes");
 
             migrationBuilder.RenameColumn(
-                name: "ItemDetailId",
-                table: "OrderDetails",
-                newName: "ItemId");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_OrderDetails_ItemDetailId",
-                table: "OrderDetails",
-                newName: "IX_OrderDetails_ItemId");
+                name: "Name",
+                table: "Items",
+                newName: "Title");
 
             migrationBuilder.RenameColumn(
-                name: "ItemDetailId",
-                table: "FavoriteItemUsers",
-                newName: "ItemId");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_FavoriteItemUsers_ItemDetailId",
-                table: "FavoriteItemUsers",
-                newName: "IX_FavoriteItemUsers_ItemId");
+                name: "ItemCode",
+                table: "Items",
+                newName: "SubCategoryId");
 
             migrationBuilder.AddColumn<string>(
                 name: "ShareCode",
@@ -67,108 +46,78 @@ namespace DataAccessLayer.Migrations
                 nullable: false,
                 defaultValue: "");
 
-            migrationBuilder.CreateTable(
-                name: "Items",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    SubCategoryId = table.Column<int>(type: "int", nullable: false),
-                    CategoryDetailId = table.Column<int>(type: "int", nullable: false),
-                    FeatureId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    FavoriteCount = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Brand = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Items", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Items_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Items_UserId",
+            migrationBuilder.AddColumn<string>(
+                name: "Brand",
                 table: "Items",
-                column: "UserId");
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_FavoriteItemUsers_Items_ItemId",
-                table: "FavoriteItemUsers",
-                column: "ItemId",
-                principalTable: "Items",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+            migrationBuilder.AddColumn<int>(
+                name: "CategoryDetailId",
+                table: "Items",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_OrderDetails_Items_ItemId",
-                table: "OrderDetails",
-                column: "ItemId",
-                principalTable: "Items",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+            migrationBuilder.AddColumn<int>(
+                name: "CategoryId",
+                table: "Items",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Description",
+                table: "Items",
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<string>(
+                name: "Image",
+                table: "Items",
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_FavoriteItemUsers_Items_ItemId",
-                table: "FavoriteItemUsers");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_OrderDetails_Items_ItemId",
-                table: "OrderDetails");
-
-            migrationBuilder.DropTable(
-                name: "Items");
-
             migrationBuilder.DropColumn(
                 name: "ShareCode",
                 table: "Orders");
 
+            migrationBuilder.DropColumn(
+                name: "Brand",
+                table: "Items");
+
+            migrationBuilder.DropColumn(
+                name: "CategoryDetailId",
+                table: "Items");
+
+            migrationBuilder.DropColumn(
+                name: "CategoryId",
+                table: "Items");
+
+            migrationBuilder.DropColumn(
+                name: "Description",
+                table: "Items");
+
+            migrationBuilder.DropColumn(
+                name: "Image",
+                table: "Items");
+
             migrationBuilder.RenameColumn(
-                name: "ItemId",
-                table: "OrderDetails",
-                newName: "ItemDetailId");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_OrderDetails_ItemId",
-                table: "OrderDetails",
-                newName: "IX_OrderDetails_ItemDetailId");
+                name: "Title",
+                table: "Items",
+                newName: "Name");
 
             migrationBuilder.RenameColumn(
-                name: "ItemId",
-                table: "FavoriteItemUsers",
-                newName: "ItemDetailId");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_FavoriteItemUsers_ItemId",
-                table: "FavoriteItemUsers",
-                newName: "IX_FavoriteItemUsers_ItemDetailId");
-
-            migrationBuilder.CreateTable(
-                name: "Images",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AdImage = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    ItemDetailId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Images", x => x.Id);
-                });
+                name: "SubCategoryId",
+                table: "Items",
+                newName: "ItemCode");
 
             migrationBuilder.CreateTable(
                 name: "Invoices",
@@ -204,22 +153,14 @@ namespace DataAccessLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
                     CategoryDetailId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    FavoriteCount = table.Column<int>(type: "int", nullable: false),
                     FeatureId = table.Column<int>(type: "int", nullable: false),
                     SubCategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ItemDetails", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ItemDetails_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -247,7 +188,6 @@ namespace DataAccessLayer.Migrations
                     FrontCameraResolution = table.Column<int>(type: "int", nullable: false),
                     Memory = table.Column<int>(type: "int", nullable: false),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     RAMCapacity = table.Column<int>(type: "int", nullable: false),
                     RearCameraResolution = table.Column<int>(type: "int", nullable: false),
                     ScreenSize = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
@@ -264,7 +204,7 @@ namespace DataAccessLayer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     InvoiceId = table.Column<int>(type: "int", nullable: false),
-                    ItemDetailId = table.Column<int>(type: "int", nullable: false),
+                    ItemId = table.Column<int>(type: "int", nullable: false),
                     OrderDetailId = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<int>(type: "int", nullable: false),
                     LineTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -280,9 +220,9 @@ namespace DataAccessLayer.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_InvoiceDetails_ItemDetails_ItemDetailId",
-                        column: x => x.ItemDetailId,
-                        principalTable: "ItemDetails",
+                        name: "FK_InvoiceDetails_Items_ItemId",
+                        column: x => x.ItemId,
+                        principalTable: "Items",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_InvoiceDetails_OrderDetails_OrderDetailId",
@@ -327,9 +267,9 @@ namespace DataAccessLayer.Migrations
                 column: "InvoiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InvoiceDetails_ItemDetailId",
+                name: "IX_InvoiceDetails_ItemId",
                 table: "InvoiceDetails",
-                column: "ItemDetailId");
+                column: "ItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InvoiceDetails_OrderDetailId",
@@ -347,11 +287,6 @@ namespace DataAccessLayer.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ItemDetails_UserId",
-                table: "ItemDetails",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Payments_OrderId",
                 table: "Payments",
                 column: "OrderId");
@@ -360,22 +295,6 @@ namespace DataAccessLayer.Migrations
                 name: "IX_Payments_PaymentTypeId",
                 table: "Payments",
                 column: "PaymentTypeId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_FavoriteItemUsers_ItemDetails_ItemDetailId",
-                table: "FavoriteItemUsers",
-                column: "ItemDetailId",
-                principalTable: "ItemDetails",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_OrderDetails_ItemDetails_ItemDetailId",
-                table: "OrderDetails",
-                column: "ItemDetailId",
-                principalTable: "ItemDetails",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
     }
 }

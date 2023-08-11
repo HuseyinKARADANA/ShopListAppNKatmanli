@@ -9,8 +9,8 @@ namespace EntityLayer.DTOs
 {
     public class DefaultAddressDTO
     {
-        
 
+        public int UserID { get; set; }
         public string AddressName { get; set; }
 
         public string CountryName { get; set; }
@@ -25,7 +25,7 @@ namespace EntityLayer.DTOs
 
         public string AddressText { get; set; }
 
-        public static explicit operator DefaultAddressDTO(Address address)
+        public static implicit operator DefaultAddressDTO(Address address)
         {
             return new DefaultAddressDTO
             {

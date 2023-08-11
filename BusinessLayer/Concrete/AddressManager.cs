@@ -42,5 +42,21 @@ namespace BusinessLayer.Concrete
         {
             _addressDal.Update(t);
         }
+
+
+        public List<Address> GetAddressesByUserId(int userId)
+        {
+            List<Address> addresses = _addressDal.GetAddressesByUserId(userId);
+
+            return addresses;
+        }
+
+        public Address GetFirstAddressByUserId(int userId)
+        {
+            Address address = _addressDal.GetFirstAddressByUserId(userId);
+
+            return address;
+        }
+
     }
 }

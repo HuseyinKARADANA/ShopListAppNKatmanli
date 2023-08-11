@@ -18,6 +18,8 @@
 
         public string ShareCode { get; set; }
 
+        public bool IsMain { get; set; }
+
         public Address Address { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }

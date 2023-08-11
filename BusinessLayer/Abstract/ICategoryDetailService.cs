@@ -10,5 +10,7 @@ namespace BusinessLayer.Abstract
     public interface ICategoryDetailService : IGenericService<CategoryDetail>
     {
         CategoryDetail GetCategoryDetailByName(string name);
+
+        List<CategoryDetail> GetCategoryDetailsBySubCategoryId(int subCategoryId);
     }
 }

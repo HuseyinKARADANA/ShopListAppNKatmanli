@@ -23,12 +23,14 @@ namespace EntityLayer.DTOs
 
         public bool Gender { get; set; }
 
+        public bool IsActive { get; set; }
+
         [Column(TypeName = "Date")]
         public DateTime BirthDate { get; set; }
 
         public DateTime RegisterDate { get; set; }
 
-        public int PhoneNumber { get; set; }
+        public long PhoneNumber { get; set; }
 
         public static implicit operator User(RegisterDTO registerDTO)
         {
@@ -40,7 +42,8 @@ namespace EntityLayer.DTOs
                 Gender = registerDTO.Gender,
                 BirthDate = registerDTO.BirthDate,
                 RegisterDate = registerDTO.RegisterDate,
-                PhoneNumber = registerDTO.PhoneNumber
+                PhoneNumber = registerDTO.PhoneNumber,
+                IsActive = registerDTO.IsActive
             };
         }
     }

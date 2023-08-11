@@ -15,5 +15,7 @@ namespace DataAccessLayer.Abstract
         User GetUserByEmailAndPassword(string email, string password);
         User GetElementByUsername(string username);
 
+        User GetUserByEmail(string email);
+
     }
 }

@@ -2,6 +2,7 @@
 using DataAccessLayer.Concrete.Repository;
 using DataAccessLayer.Contexts;
 using EntityLayer.Concrete;
+using EntityLayer.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,6 @@ namespace DataAccessLayer.Concrete.EntityFramework
         public EfAddressDal(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
+
     }
 }

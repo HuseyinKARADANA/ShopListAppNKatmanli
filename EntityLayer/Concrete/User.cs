@@ -24,7 +24,10 @@ namespace EntityLayer.Concrete
 
         public DateTime RegisterDate { get; set; }
 
-        public int PhoneNumber { get; set; }
+        public long PhoneNumber { get; set; }
+
+        public string? ProfilePhoto { get; set; }
+        public bool IsActive { get; set; }
 
         public List<Address> Addresses { get; set; }
 

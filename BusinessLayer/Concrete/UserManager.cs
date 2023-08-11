@@ -3,6 +3,7 @@ using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,24 @@ namespace BusinessLayer.Concrete
             return false;
         }
 
-       
+        public User GetUserByEmailAndPassword(string email,string password)
+        {
+            var user = _userDal.GetUserByEmailAndPassword(email, password);
+
+            if (user != null)
+                return user;
+            else
+                return null;
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            var user = _userDal.GetUserByEmail(email);
+
+            if (user != null)
+                return user;
+            else
+                return null;
+        }
     }
 }

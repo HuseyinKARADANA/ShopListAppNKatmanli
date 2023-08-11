@@ -10,5 +10,6 @@ namespace DataAccessLayer.Abstract
     public interface ISubCategoryDal : IGenericDal<SubCategory>
     {
         SubCategory GetSubCategoryByName(string name);
+        List<SubCategory> GetSubCategoriesByCategoryId(int categoryId);
     }
 }

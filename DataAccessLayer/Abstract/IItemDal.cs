@@ -9,5 +9,8 @@ namespace DataAccessLayer.Abstract
 {
     public interface IItemDal : IGenericDal<Item>
     {
+        Item GetItemByBrand(string name);
+        List<Item> GetItemsByUserId(int userId);
+
     }
 }

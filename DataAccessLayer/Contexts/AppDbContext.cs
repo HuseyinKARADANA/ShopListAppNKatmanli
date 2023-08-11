@@ -10,7 +10,7 @@ using EntityLayer.Concrete;
 
 namespace DataAccessLayer.Contexts
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext : DbContext
     {
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -20,7 +20,13 @@ namespace DataAccessLayer.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)//unique key usage
         {
+            modelBuilder.Entity<User>()
+                .HasIndex(c => c.Email)
+                .IsUnique();
 
+            modelBuilder.Entity<User>()
+            .HasIndex(c => c.UserName)
+                .IsUnique();
 
 
 
@@ -43,7 +49,7 @@ namespace DataAccessLayer.Contexts
                 .HasForeignKey(od => od.OrderId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            
+
 
 
             modelBuilder.Entity<Category>(entity =>
@@ -115,9 +121,10 @@ namespace DataAccessLayer.Contexts
 
         public DbSet<Item> Items { get; set; }
 
-        
+        public DbSet<Discount> Discounts { get; set; }
 
-        
+
+
 
 
         public DbSet<FavoriteItemUser> FavoriteItemUsers { get; set; }
@@ -125,7 +132,7 @@ namespace DataAccessLayer.Contexts
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Reminder> Reminders { get; set; }
 
-        
     }
 }

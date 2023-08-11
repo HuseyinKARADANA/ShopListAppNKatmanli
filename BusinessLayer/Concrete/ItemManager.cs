@@ -12,10 +12,13 @@ namespace BusinessLayer.Concrete
     public class ItemManager : IItemService
     {
         private readonly IItemDal _itemDal;
+        private readonly IUserDal _userDal;
 
-        public ItemManager(IItemDal itemDal)
+        public ItemManager(IItemDal itemDal, IUserDal userDal)
         {
-            _itemDal=itemDal;
+            _itemDal = itemDal;
+            _userDal = userDal;
+
         }
 
         public void Delete(Item t)
@@ -30,7 +33,19 @@ namespace BusinessLayer.Concrete
 
         public List<Item> GetListAll()
         {
-           return _itemDal.GetListAll();
+            List<Item> items = _itemDal.GetListAll();
+            List<Item> validateItems = new List<Item>();
+
+            foreach(var item in items)
+            {
+                var user = _userDal.GetElementById(item.UserId);
+                if (user.IsActive)
+                {
+                    validateItems.Add(item);
+                }
+            }
+
+            return validateItems;
         }
 
         public void Insert(Item t)
@@ -42,5 +57,16 @@ namespace BusinessLayer.Concrete
         {
             _itemDal.Update(t);
         }
+
+        public Item GetItemByBrand(string brand)
+        {
+            return _itemDal.GetItemByBrand(brand);
+        }
+
+        public List<Item> GetItemsByUserId(int userId)
+        {
+            return _itemDal.GetItemsByUserId(userId);
+        }
+
     }
 }

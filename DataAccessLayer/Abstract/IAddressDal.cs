@@ -10,6 +10,8 @@ namespace DataAccessLayer.Abstract
 {
     public interface IAddressDal : IGenericDal<Address>
     {
+        List<Address> GetAddressesByUserId(int userId);
 
+        Address GetFirstAddressByUserId(int userId);
     }
 }

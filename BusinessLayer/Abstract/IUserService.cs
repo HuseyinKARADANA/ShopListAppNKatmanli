@@ -14,6 +14,8 @@ namespace BusinessLayer.Abstract
 
         User GetElementByUsername(string username);
 
+        User GetUserByEmailAndPassword(string email,string password);
 
+        User GetUserByEmail(string email);
     }
 }
